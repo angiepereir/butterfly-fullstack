@@ -11,11 +11,9 @@ Puerto backend : 8000
 Puerto frontend (Vite): 5174
 
 # Backend
-cd nombre de la carpeta 
-node app.js
+cd nombre de la carpeta
+npm run api
 
-# Para test de desarrollo 
-npm run dev 
 # Para test de prueba 
 npm run test
 
