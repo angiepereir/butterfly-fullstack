@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "./styles/animation-intro.css";
+
+@theme {
+    --color-light-green: #c9dfb3;
+    --color-light-green-0: #edf4e6;
+    --color-light-green-600: #44583c;
+    --color-mint-green: #9cc7ab;
+    --color-mint-green-0: #e6f1ea;
+    --color-mint-green-100: #c1dcca;
+    --color-mint-green-600: #3d5b43;
+    --color-mint-green-700: #28422b;
+    --color-mint-green-800: #132b15;
+    --color-olive-green: #abbf60;
+    --color-olive-green-0: #eef2df;
+    --color-olive-green-500: #6c7d3a;
+    --color-olive-green-600: #53632c;
+    --color-mustard-yellow: #f2d022;
+    --color-mustad-yellow-0: #fcf4cd;
+    --color-mustard-yellow-500: #957112;
+    --color-mustard-yellow-600: #7d570e;
+    --color-lime-green: #d4d941;
+    --color-mint-green-200: #9cc7ab;
+    --font-segoe: "Segoe UI"
+}

@@ -1,0 +1,36 @@
+@layer utilities {
+/*ANIMACIÓN: FLOTAR
+   Hace que el elemento suba y baje suavemente */
+  @keyframes flotar {
+/* En el inicio y final de la animación (0% y 100%), el elemento está en su posición original */
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+  /* A la mitad del tiempo (50%), el elemento sube 10px */
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+ /* Clase para aplicar la animación de "flotar" */
+  .animate-flotar {
+    animation: flotar 1s ease-in-out infinite;
+  }
+
+  
+  @keyframes fade-in {
+    to {
+      opacity: 1;  /* El elemento se vuelve completamente visible porque en el texto p esta en opacidad 0 */
+      transform: translateX(0);/* Se mueve a su posición original desde la derecha */
+    }
+  }
+ /* Clase para aplicar la animación fade-in */
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+    transform: translateX(50px);
+  }
+/* Clase de utilidad para retrasar la animación 0.5s */
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+}
