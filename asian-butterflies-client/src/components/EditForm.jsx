@@ -3,7 +3,6 @@ import ImageSelector from "./ImageSelector";
 import StatusSelector from "./StatusSelector";
 import Buttons from "./Buttons";
 
-
 const EditForm = ({
   FormData,
   onChange,
@@ -57,8 +56,10 @@ const EditForm = ({
       <div>
         <label className="font-bold text-mint-green-700 mb-2 text-sm lg:text-lg font-segoe">
           Selecciona la region de origen: <br />
-          <CountrySelect onChange={handleSelectionChange}
-            value={{ region: FormData.region, location: FormData.location }} />
+          <CountrySelect
+            onChange={handleSelectionChange}
+            value={{ region: FormData.region, location: FormData.location }}
+          />
         </label>
       </div>
 
@@ -109,13 +110,14 @@ const EditForm = ({
         >
           Estado de Conservación: <br />
           <StatusSelector
-            value={FormData.status}
-            onChange={onChange}
+            value={String(FormData.status ?? "")}
+            onChange={(e) =>
+              onChange({ target: { name: "status", value: e.target.value } })
+            }
             disabled={isSubmitting}
           />
         </label>
       </div>
-
 
       {/* Actividad */}
       <div className="flex flex-col">
@@ -124,22 +126,25 @@ const EditForm = ({
         </label>
         <label htmlFor="radio-diurno">
           <input
+            id="radio-diurno"
             type="radio"
             name="activity"
             value="1"
-            checked={FormData.activity === "1"}
+            checked={String(FormData.activity ?? "") === "1"}
             onChange={onChange}
             className="mr-2 text-mint-green-700 text-sm lg:text-lg font-segoe"
             disabled={isSubmitting}
           />
           Diurna
         </label>
+
         <label htmlFor="radio-nocturno">
           <input
+            id="radio-nocturno"
             type="radio"
             name="activity"
             value="0"
-            checked={FormData.activity === "0"}
+            checked={String(FormData.activity ?? "") === "0"}
             onChange={onChange}
             className="mr-2 text-mint-green-700 mb-3 text-sm lg:text-lg font-segoe"
             disabled={isSubmitting}
@@ -172,7 +177,7 @@ const EditForm = ({
           disabled={isSubmitting}
         />
       </div>
-    </form >
+    </form>
   );
 };
 
