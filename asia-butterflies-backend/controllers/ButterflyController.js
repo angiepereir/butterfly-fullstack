@@ -59,6 +59,46 @@ export const createButterfly = async (req, res) => {
 };
 
 // Actualiza una mariposa por ID
+// export const updateButterfly = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const {
+//       name,
+//       sciname,
+//       shortDescription,
+//       longDescription,
+//       activity,
+//       status,
+//       region,
+//       location,
+//       imageUrl,
+//     } = req.body;
+
+//     // Sequelize update
+//     const [updated] = await ButterflyModel.update(
+//       {
+//         name,
+//         sciname,
+//         shortDescription,
+//         longDescription,
+//         activity,
+//         status,
+//         region,
+//         location,
+//         imageUrl,
+//       },
+//       { where: { id } }
+//     );
+
+//     // Devolver la mariposa ya actualizada
+//     const updatedButterfly = await ButterflyModel.findByPk(id);
+//     res.status(200).json(updatedButterfly);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: error.message });
+//   }
+
+// };
 export const updateButterfly = async (req, res) => {
   try {
     const { id } = req.params;
@@ -74,31 +114,30 @@ export const updateButterfly = async (req, res) => {
       imageUrl,
     } = req.body;
 
-    // Sequelize update
-    const [updated] = await ButterflyModel.update(
-      {
-        name,
-        sciname,
-        shortDescription,
-        longDescription,
-        activity,
-        status,
-        region,
-        location,
-        imageUrl,
-      },
-      { where: { id } }
-    );
+    const b = await ButterflyModel.findByPk(id);
+    if (!b) return res.status(404).json({ error: "Mariposa no encontrada" });
 
-    // Devolver la mariposa ya actualizada
-    const updatedButterfly = await ButterflyModel.findByPk(id);
-    res.status(200).json(updatedButterfly);
+    // Asigna SOLO si vienen definidos. Esto dispara los setters del modelo.
+    if (name !== undefined) b.set("name", name);
+    if (sciname !== undefined) b.set("sciname", sciname);
+    if (shortDescription !== undefined) b.set("shortDescription", shortDescription);
+    if (longDescription !== undefined) b.set("longDescription", longDescription);
+    if (activity !== undefined) b.set("activity", activity); // setter -> parseInt o null
+    if (status !== undefined) b.set("status", status);       // setter -> parseInt o null
+    if (region !== undefined) b.set("region", region);
+    if (location !== undefined) b.set("location", location);
+    if (imageUrl !== undefined) b.set("imageUrl", imageUrl);
+
+    await b.save(); // aquí persiste (y corre validaciones de instancia)
+
+    // Importante: sin { raw:true } para que se apliquen los getters al devolver
+    res.status(200).json(b);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
   }
-
 };
+
 
 // 🦋 Eliminar una mariposa por su ID
 export const deleteButterfly = async (req, res) => {

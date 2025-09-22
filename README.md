@@ -20,3 +20,15 @@ npm run test
 # Frontend
 cd Nombre de la carpeta 
 npm run dev
+
+REPOS:
+# MARIANA MORENO: (https://github.com/MarianaMH1195/fullstack-butterflies-SQL)
+
+# LARYSA AMBARTSUMIAN: (https://github.com/ambalari/butterflies-fullstack-)
+
+# LARYSA AMBARTSUMIAN: (https://github.com/ambalari/butterflies-fullstack-)
+
+# LARYSA AMBARTSUMIAN: (https://github.com/ambalari/butterflies-fullstack-)
+
+
+

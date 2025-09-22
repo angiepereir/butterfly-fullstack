@@ -23,17 +23,31 @@ const EditedButterfly = () => {
         console.log("Mariposa obtenida:", butterfly);
 
         // Para evitar undefined, asignamos con spread y valores por defecto
+        // setFormData({
+        //   name: butterfly.name || "",
+        //   sciname: butterfly.sciname || "",
+        //   shortDescription: butterfly.shortDescription || "",
+        //   longDescription: butterfly.longDescription || "",
+        //   status: butterfly.status || "",
+        //   activity: butterfly.activity || "",
+        //   region: butterfly.region || "",
+        //   location: butterfly.location || "",
+        //   imageUrl: butterfly.imageUrl || "",
+        //   id: butterfly.id || id, // aseguramos id
+        // });
         setFormData({
-          name: butterfly.name || "",
-          sciname: butterfly.sciname || "",
-          shortDescription: butterfly.shortDescription || "",
-          longDescription: butterfly.longDescription || "",
-          status: butterfly.status || "",
-          activity: butterfly.activity || "",
-          region: butterfly.region || "",
-          location: butterfly.location || "",
-          imageUrl: butterfly.imageUrl || "",
-          id: butterfly.id || id, // aseguramos id
+          name: butterfly.name ?? "",
+          sciname: butterfly.sciname ?? "",
+          shortDescription: butterfly.shortDescription ?? "",
+          longDescription: butterfly.longDescription ?? "",
+          // 👇 clave: no uses ||; convierte a string para el form
+          status: butterfly.status == null ? "" : String(butterfly.status),
+          activity:
+            butterfly.activity == null ? "" : String(butterfly.activity),
+          region: butterfly.region ?? "",
+          location: butterfly.location ?? "",
+          imageUrl: butterfly.imageUrl ?? "",
+          id: butterfly.id ?? id,
         });
 
         setIsLoading(false);
@@ -68,15 +82,12 @@ const EditedButterfly = () => {
     } catch (error) {
       errorAlert({
         title: "Error",
-        message: "Error al actualizar mariposa."
+        message: "Error al actualizar mariposa.",
       });
     }
   };
 
   if (isLoading || !FormData) return <p>Cargando datos...</p>;
-
-
-
 
   return (
     <>
